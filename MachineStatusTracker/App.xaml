@@ -6,6 +6,10 @@
                           >
     <Application.Resources>
         <ResourceDictionary>
+
+            <Style TargetType="TextBlock" x:Key="PageHeader">
+                <Setter Property="FontSize" Value="32"/>
+            </Style>
             <SolidColorBrush 
                 x:Key="BorderPrimary"
                 Color="#1c1c1c"/>

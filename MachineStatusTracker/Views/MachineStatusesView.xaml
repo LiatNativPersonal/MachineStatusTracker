@@ -17,7 +17,10 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Machine Status Tracker" FontSize="32"/>
+            <TextBlock 
+                Grid.Column="0" 
+                Text="Machine Status Tracker"
+                Style="{StaticResource PageHeader}"/>
             <Button  
                 Grid.Column="1" 
                 Content="Add" 
