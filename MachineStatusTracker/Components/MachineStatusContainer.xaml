@@ -7,6 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+
+        <Border BorderBrush="LightGray" CornerRadius="5" BorderThickness="2" >
+            <WrapPanel Background="WhiteSmoke" Orientation="Horizontal" >
+                <local:MachineStatusView></local:MachineStatusView>
+                <local:MachineStatusView></local:MachineStatusView>
+                <local:MachineStatusView></local:MachineStatusView>
+                <local:MachineStatusView></local:MachineStatusView>
+            </WrapPanel>
+        </Border>
+
     </Grid>
 </UserControl>
