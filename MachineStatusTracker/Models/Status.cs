@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace MachineStatusTracker.Models
 {
-    class Status
+    public class Status
     {
+        private readonly Guid Id;
+        public string Name { get; }
+
+        public Status(string name = "")
+        {
+            Id = Guid.NewGuid();
+            Name = name;
+        }
     }
 }
