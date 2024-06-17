@@ -13,7 +13,7 @@ namespace MachineStatusTracker
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            MainWindow = new Window()
+            MainWindow = new MainWindow()
             {
                 DataContext = new MachineStatusesViewModel()
             };
