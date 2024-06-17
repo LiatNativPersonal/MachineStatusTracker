@@ -7,14 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Border  
+             BorderBrush="{StaticResource BorderPrimary}" 
+             SnapsToDevicePixels="True"
+             CornerRadius="5"
+             BorderThickness="2" >
+            <Grid>
+            <Grid.OpacityMask>
+                <VisualBrush Visual="{Binding ElementName=border}"/>
+            </Grid.OpacityMask>
+                <Border
+                x:Name="border"
+               Background="White"               
+                CornerRadius="5" />          
 
-        <Border BorderBrush="LightGray" CornerRadius="5" BorderThickness="2" >
+
             <WrapPanel Background="WhiteSmoke" Orientation="Horizontal" >
                 <local:MachineStatusView></local:MachineStatusView>
                 <local:MachineStatusView></local:MachineStatusView>
                 <local:MachineStatusView></local:MachineStatusView>
                 <local:MachineStatusView></local:MachineStatusView>
             </WrapPanel>
+            </Grid>
         </Border>
 
     </Grid>
