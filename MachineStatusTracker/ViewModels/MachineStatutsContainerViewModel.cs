@@ -16,9 +16,9 @@ namespace MachineStatusTracker.ViewModels
         {
             _machineStatusViewModels = new ObservableCollection<MachineStatusViewModel>();
 
-            _machineStatusViewModels.Add(new MachineStatusViewModel("Machine1", "Some information", "idle"));
-            _machineStatusViewModels.Add(new MachineStatusViewModel("Machine2", "Some information", "active"));
-            _machineStatusViewModels.Add(new MachineStatusViewModel("Machine3", "Some information", "offline"));
+            _machineStatusViewModels.Add(new MachineStatusViewModel("Machine 1", "Some information", "idle"));
+            _machineStatusViewModels.Add(new MachineStatusViewModel("Machine 2", "Some information", "active"));
+            _machineStatusViewModels.Add(new MachineStatusViewModel("Machine 3", "Some information", "offline"));
         }
     }
 }
