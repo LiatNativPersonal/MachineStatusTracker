@@ -1,4 +1,5 @@
 ﻿using MachineStatusTracker.Models;
+using MachineStatusTracker.ViewModels;
 using System.Configuration;
 using System.Data;
 using System.Windows;
@@ -12,7 +13,12 @@ namespace MachineStatusTracker
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            Machine machine = new Machine("M1", "Test machine");
+            MainWindow = new Window()
+            {
+                DataContext = new MachineStatusesViewModel()
+            };
+            MainWindow.Show();
+
             base.OnStartup(e);
         }
     }

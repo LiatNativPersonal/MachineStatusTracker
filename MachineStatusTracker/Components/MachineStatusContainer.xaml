@@ -23,10 +23,8 @@
 
 
             <WrapPanel Background="WhiteSmoke" Orientation="Horizontal" >
-                <local:MachineStatusView></local:MachineStatusView>
-                <local:MachineStatusView></local:MachineStatusView>
-                <local:MachineStatusView></local:MachineStatusView>
-                <local:MachineStatusView></local:MachineStatusView>
+                <local:MachineStatusView DataContext="Binding MachineStatusViewModel"></local:MachineStatusView>
+              
             </WrapPanel>
             </Grid>
         </Border>
