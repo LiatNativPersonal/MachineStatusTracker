@@ -8,5 +8,11 @@ namespace MachineStatusTracker.ViewModels
 {
     public class AddMachineViewModel:ViewModelBase
     {
+        public MachineDetailsFormViewModel MachineDetailsFormViewModel { get;  }
+
+        public AddMachineViewModel()
+        {
+            MachineDetailsFormViewModel = new MachineDetailsFormViewModel();
+        }
     }
 }
