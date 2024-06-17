@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:MachineStatusTracker" xmlns:Views="clr-namespace:MachineStatusTracker.Views" xmlns:viewmodels="clr-namespace:MachineStatusTracker.ViewModels"
         mc:Ignorable="d"
         Title="Machine Status Tracker" Height="450" Width="800">
-    <Grid Margin="25">
-        <Views:MachineStatusesView/>
+   
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid Margin="25">
+            <!--<Views:AddMachineView/>
+            <Views:EditMachineView/>-->
+            <Views:MachineStatusesView/>
     </Grid>
+    </ScrollViewer>
 </Window>
