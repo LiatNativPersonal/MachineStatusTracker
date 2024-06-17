@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Machine Status Tracker" Height="450" Width="800">
     <Grid Margin="25">
-        <Views:MachineStatusesView DataContext="{Binding MachineStatusesViewModel}"/>
+        <Views:MachineStatusesView/>
     </Grid>
 </Window>
