@@ -42,8 +42,8 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Content="Edit" />
-                    <Button Grid.Column="1" Content="Delete" Margin="10 0 0 0"/>
+                    <Button Grid.Column="0" Content="Edit" Command="{Binding EditCommand}"/>
+                    <Button Grid.Column="1" Content="Delete" Command="{Binding DeleteCommand}" Margin="10 0 0 0"/>
                 </Grid>
 
             </Grid>

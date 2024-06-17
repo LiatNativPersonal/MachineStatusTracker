@@ -20,30 +20,9 @@
                Background="WhiteSmoke"               
                 CornerRadius="5" />
 
-                
-
-                <!--<ListView ItemsSource="{Binding MachineStatusViewModels}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding MachineName}"/>
-                            </Grid>
-                        </DataTemplate>
-
-                    </ListView.ItemTemplate>
-
-                </ListView>-->
+               
 
                 <ItemsControl  ItemsSource="{Binding MachineStatusViewModels}">
-
-                    <ItemsControl.ItemContainerStyle>
-                        <Style>
-                            <Setter Property="FrameworkElement.DataContext" Value="{Binding MachineStautsContainerViewModel}"/>
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid>
