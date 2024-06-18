@@ -1,4 +1,5 @@
 ﻿using MachineStatusTracker.Models;
+using MachineStatusTracker.Stores;
 using MachineStatusTracker.ViewModels;
 using System.Configuration;
 using System.Data;
@@ -11,11 +12,18 @@ namespace MachineStatusTracker
     /// </summary>
     public partial class App : Application
     {
+
+        private readonly ModalNavigationStore _modalNavigationStore;       
+
+        public App()
+        {
+            _modalNavigationStore = new ModalNavigationStore();
+        }
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new MachineStatusesViewModel()
+                DataContext = new MainViewModel(_modalNavigationStore, new MachineStatusesViewModel())
 
             };
             MainWindow.Show();

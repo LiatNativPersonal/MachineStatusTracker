@@ -11,7 +11,7 @@
         <Grid Margin="25">
             <!--<Views:AddMachineView />-->
             <!--<Views:EditMachineView/>-->
-            <Views:MachineStatusesView/>
+            <Views:MachineStatusesView DataContext="{Binding MachineStatusesViewModel}"/>
     </Grid>
     </ScrollViewer>
 </Window>
