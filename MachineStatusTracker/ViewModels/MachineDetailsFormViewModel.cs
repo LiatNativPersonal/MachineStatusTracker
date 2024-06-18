@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,10 @@ namespace MachineStatusTracker.ViewModels
 {
     public class MachineDetailsFormViewModel:ViewModelBase
     {
+        private readonly ObservableCollection<MachineStatus> _opStatuses;
+        public IEnumerable<MachineStatus> OpStatuses => _opStatuses;
+
+
         private string _machineName;
         public string MachineName {
             get
@@ -24,8 +29,8 @@ namespace MachineStatusTracker.ViewModels
             } 
         }
 
-        private string _machineStatus;
-        public string MachineStatus
+        private MachineStatus _machineStatus;
+        public MachineStatus MachineStatus
         {
             
         get
@@ -34,7 +39,7 @@ namespace MachineStatusTracker.ViewModels
             }
             set
             {
-                _machineName = value;
+                _machineStatus = value;
                 OnPropertyChanged(nameof(MachineStatus));
                 OnPropertyChanged(nameof(CanSubmit));
             }
@@ -46,11 +51,11 @@ namespace MachineStatusTracker.ViewModels
 
             get
             {
-                return _machineStatus;
+                return _machineDescription;
             }
             set
             {
-                _machineName = value;
+                _machineDescription = value;
                 OnPropertyChanged(nameof(MachineDescription));
             }
         }
@@ -58,6 +63,6 @@ namespace MachineStatusTracker.ViewModels
         public ICommand SubmitCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
-        public bool CanSubmit => !string.IsNullOrEmpty(MachineStatus) && !string.IsNullOrEmpty(MachineName);
+        public bool CanSubmit => !string.IsNullOrEmpty(MachineStatus.ToString()) && !string.IsNullOrEmpty(MachineName);
     }
 }
