@@ -16,10 +16,10 @@ namespace MachineStatusTracker.ViewModels
 
         public ICommand? AddMachineCommand { get; }
 
-        public MachineStatusesViewModel(ModalNavigationStore modalNavigationStore)
+        public MachineStatusesViewModel(ModalNavigationStore modalNavigationStore, MachineStore machineStore)
         {
-            MachineStautsContainerViewModel = new MachineStautsContainerViewModel(modalNavigationStore);
-            AddMachineCommand = new OpenAddMachineStatusCommand(modalNavigationStore);
+            MachineStautsContainerViewModel = new MachineStautsContainerViewModel(machineStore, modalNavigationStore);
+            AddMachineCommand = new OpenAddMachineStatusCommand(machineStore, modalNavigationStore);
 
         }
     }

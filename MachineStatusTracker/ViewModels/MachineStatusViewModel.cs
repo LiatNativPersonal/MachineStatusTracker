@@ -34,18 +34,18 @@ namespace MachineStatusTracker.ViewModels
 
     public class MachineStatus
     {
-        public Guid MachineId { get; set; }
-        public string MachineName { get; set; }
+        public Guid StatusId { get; set; }
+        public string StatusName { get; set; }
         public MachineStatus(string Name, Guid machineID)
         {
-            MachineName = Name;
-            MachineId = machineID;
+            StatusName = Name;
+            StatusId = machineID;
             
         }
 
         public override string ToString()
         {
-            return MachineName;
+            return StatusName;
         }
     }
         

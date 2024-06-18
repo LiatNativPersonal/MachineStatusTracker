@@ -8,8 +8,8 @@ namespace MachineStatusTracker.Models
 {
     public class Status
     {
-        public Guid Id;
-        public string Name { get; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
 
         public Status(string name = "")
         {

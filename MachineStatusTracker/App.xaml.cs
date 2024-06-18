@@ -13,17 +13,20 @@ namespace MachineStatusTracker
     public partial class App : Application
     {
 
-        private readonly ModalNavigationStore _modalNavigationStore;       
+        private readonly ModalNavigationStore _modalNavigationStore;
+        private readonly MachineStore _machineStore;
 
         public App()
         {
             _modalNavigationStore = new ModalNavigationStore();
+            _machineStore = new MachineStore();
         }
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_modalNavigationStore, new MachineStatusesViewModel(_modalNavigationStore))
+                DataContext = new MainViewModel(_modalNavigationStore,
+                new MachineStatusesViewModel(_modalNavigationStore, _machineStore))
 
             };
             MainWindow.Show();

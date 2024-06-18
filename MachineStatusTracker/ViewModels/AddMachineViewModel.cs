@@ -13,10 +13,10 @@ namespace MachineStatusTracker.ViewModels
     {
         public MachineDetailsFormViewModel MachineDetailsFormViewModel { get;  }
 
-        public AddMachineViewModel(ModalNavigationStore modalNavigationStore)
+        public AddMachineViewModel(MachineStore machineStore, ModalNavigationStore modalNavigationStore)
         {
             ICommand cancelCommand = new CLoseModelCommand(modalNavigationStore);
-            ICommand submitCommand = new AddMachineCommand(modalNavigationStore);
+            ICommand submitCommand = new AddMachineCommand(this, machineStore, modalNavigationStore);
             MachineDetailsFormViewModel = new MachineDetailsFormViewModel(submitCommand, cancelCommand);
         }
     }

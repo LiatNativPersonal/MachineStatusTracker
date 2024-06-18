@@ -12,17 +12,18 @@ namespace MachineStatusTracker.Commands
 {
     public class OpenAddMachineStatusCommand : CommandBase
     {
-
+        private readonly MachineStore _machineStore;
         private readonly ModalNavigationStore _modalNavigationStore;
 
-        public OpenAddMachineStatusCommand(ModalNavigationStore modalNavigationStore)
+        public OpenAddMachineStatusCommand(MachineStore machineStore, ModalNavigationStore modalNavigationStore)
         {
+            _machineStore = machineStore;
             _modalNavigationStore = modalNavigationStore;
         }
 
         public override void Execute(object? parameter)
         {
-            AddMachineViewModel addMachineViewModel = new AddMachineViewModel(_modalNavigationStore);
+            AddMachineViewModel addMachineViewModel = new AddMachineViewModel(_machineStore, _modalNavigationStore);
             _modalNavigationStore.CurrentViewModel = addMachineViewModel;
         }
     }

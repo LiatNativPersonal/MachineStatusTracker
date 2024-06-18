@@ -1,4 +1,6 @@
-﻿using MachineStatusTracker.Stores;
+﻿using MachineStatusTracker.Models;
+using MachineStatusTracker.Stores;
+using MachineStatusTracker.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +11,32 @@ namespace MachineStatusTracker.Commands
 {
     public class AddMachineCommand : AsyncCommandBase
     {
-    
+        private readonly AddMachineViewModel _machineViewModel;
+        private readonly MachineStore _machineStore;
         private readonly ModalNavigationStore _modalNavigationStore;
 
-        public AddMachineCommand(ModalNavigationStore modalNavigationStore)
+        public AddMachineCommand(AddMachineViewModel machineViewModel, MachineStore machineStore, ModalNavigationStore modalNavigationStore)
         {
+            _machineViewModel = machineViewModel;
+            _machineStore = machineStore;
             _modalNavigationStore = modalNavigationStore;
         }
 
         public override async Task ExecuteAsync(object? parameter)
         {
-            _modalNavigationStore.Close();
+            var formViewModel = _machineViewModel.MachineDetailsFormViewModel;
+            Machine machine = new Machine(formViewModel.MachineName,
+                formViewModel.MachineDescription,
+                new Status() { Id = formViewModel.MachineStatus.StatusId, Name = formViewModel.MachineStatus.StatusName });
+            try
+            {
+                await _machineStore.Add(machine);
+                _modalNavigationStore.Close();
+            }
+            catch (Exception )
+            {
+            }
+            
         }
     }
 }

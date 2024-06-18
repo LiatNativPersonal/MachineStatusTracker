@@ -13,22 +13,38 @@ namespace MachineStatusTracker.ViewModels
 {
     public class MachineStautsContainerViewModel:ViewModelBase
     {
+        private readonly MachineStore _machineStore;
+        private readonly ModalNavigationStore _modalNavigationStore;
         private readonly ObservableCollection<MachineStatusViewModel> _machineStatusViewModels;
         public IEnumerable<MachineStatusViewModel> MachineStatusViewModels => _machineStatusViewModels;
 
-        public MachineStautsContainerViewModel(ModalNavigationStore modalNavigationStore)
+        public MachineStautsContainerViewModel(MachineStore machineStore, ModalNavigationStore modalNavigationStore)
         {
+            _machineStore = machineStore;
+            _modalNavigationStore = modalNavigationStore;
             _machineStatusViewModels = new ObservableCollection<MachineStatusViewModel>();
-            AddMachine(new Machine("Machine1", "bla lba", new Status("Idle")), modalNavigationStore);
-            AddMachine(new Machine("Machine2", "some info", new Status("Offline")), modalNavigationStore);
-            AddMachine(new Machine("Machine3", "bla lba", new Status("Online")), modalNavigationStore);
+
+            _machineStore.MachineAdded += MachineStore_MachineAdded;
+
+            AddMachine(new Machine("Machine1", "bla lba", new Status("Idle")));
+            AddMachine(new Machine("Machine2", "some info", new Status("Offline")));
+            AddMachine(new Machine("Machine3", "bla lba", new Status("Online")));
             
+        }
+        protected override void Dispose() 
+        {
+            _machineStore.MachineAdded -= MachineStore_MachineAdded;
+            base.Dispose();
         }
 
 
-        private void AddMachine(Machine machine, ModalNavigationStore modalNavigationStore)
+        private void MachineStore_MachineAdded(Machine machine)
         {
-            ICommand editCommand = new OpenEditMachineStatusCommand(modalNavigationStore, machine);
+            AddMachine(machine);
+        }
+        private void AddMachine(Machine machine)
+        {
+            ICommand editCommand = new OpenEditMachineStatusCommand(_modalNavigationStore, machine);
             _machineStatusViewModels.Add(new MachineStatusViewModel(machine, editCommand));
         }
     }
