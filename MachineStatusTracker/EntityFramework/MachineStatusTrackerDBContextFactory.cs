@@ -11,7 +11,7 @@ namespace MachineStatusTracker.EntityFramework
     {
         private readonly DbContextOptions _options;
 
-        public MachineStatusTrackerDBContextFactory(string connectionString, DbContextOptions options)
+        public MachineStatusTrackerDBContextFactory(DbContextOptions options)
         {
             _options = options;
         }
