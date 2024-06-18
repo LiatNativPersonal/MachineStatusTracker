@@ -14,9 +14,6 @@ namespace MachineStatusTracker.ViewModels
         private readonly ObservableCollection<MachineStatus> _opStatuses;
         public IEnumerable<MachineStatus> OpStatuses => _opStatuses;
 
-     
-
-       
 
         private string _machineName;
         public string MachineName {
