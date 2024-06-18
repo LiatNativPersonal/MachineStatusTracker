@@ -3,15 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MachineStatusTracker" xmlns:Views="clr-namespace:MachineStatusTracker.Views" xmlns:viewmodels="clr-namespace:MachineStatusTracker.ViewModels"
+        xmlns:local="clr-namespace:MachineStatusTracker" xmlns:Views="clr-namespace:MachineStatusTracker.Views" xmlns:viewmodels="clr-namespace:MachineStatusTracker.ViewModels" xmlns:modalControl="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         Title="Machine Status Tracker" Height="450" Width="800">
-   
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodels:AddMachineViewModel}">
+            <Views:AddMachineView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EditMachineViewModel}">
+            <Views:EditMachineView/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <Grid Margin="25">
-            <!--<Views:AddMachineView />-->
-            <!--<Views:EditMachineView/>-->
-            <Views:MachineStatusesView DataContext="{Binding MachineStatusesViewModel}"/>
+        <Grid >
+            <modalControl:Modal  Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
+                <ContentControl Margin="50 25" Content="{Binding CurrentModalViewModel}"/>
+            </modalControl:Modal>
+            
+            <Views:MachineStatusesView Margin="25" DataContext="{Binding MachineStatusesViewModel}"/>
     </Grid>
     </ScrollViewer>
 </Window>

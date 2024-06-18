@@ -21,6 +21,7 @@ namespace MachineStatusTracker.ViewModels
             MachineStatusesViewModel = machineStatusesViewModel;
 
             _modalNavigationStore.CurrentViewModelChanged += ModalNavigationStore_CurrentViewModelChanged;
+            _modalNavigationStore.CurrentViewModel = new AddMachineViewModel();
         }
 
         
