@@ -17,16 +17,19 @@ namespace MachineStatusTracker.Stores
         private readonly IUpdateMachineCommand _updateMachineCommand;
         private readonly IDeleteMachineCommand _deleteMachineCommand;
         private readonly GetAllMachineQuery _findAllMachineQuery;
+        private readonly GetAllMachineStatusesQuery _getAllMachineStatusesQuery;
 
         public MachineStore(ICreateMachineCommand createMachineCommand, 
             IUpdateMachineCommand updateMachineCommand, 
             IDeleteMachineCommand deleteMachineCommand, 
-            GetAllMachineQuery findAllMachineQuery)
+            GetAllMachineQuery findAllMachineQuery,
+            GetAllMachineStatusesQuery getAllMachineStatusesQuery)
         {
             _createMachineCommand = createMachineCommand;
             _updateMachineCommand = updateMachineCommand;
             _deleteMachineCommand = deleteMachineCommand;
             _findAllMachineQuery = findAllMachineQuery;
+            _getAllMachineStatusesQuery = getAllMachineStatusesQuery;
         }
 
         public event Action<Machine> MachineAdded;

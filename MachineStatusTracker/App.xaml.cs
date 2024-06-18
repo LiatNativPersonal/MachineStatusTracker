@@ -25,6 +25,7 @@ namespace MachineStatusTracker
         private readonly IUpdateMachineCommand _updateMachineCommand;
         private readonly IDeleteMachineCommand _deleteMachineCommand;
         private readonly GetAllMachineQuery _findAllMachineQuery;
+        private readonly GetAllMachineStatusesQuery _getAllMachineStatusesQuery;
 
 
         public App()
@@ -37,10 +38,11 @@ namespace MachineStatusTracker
             _updateMachineCommand = new UpdateMachineCommand(_dbContextFactory);
             _deleteMachineCommand = new DeleteMachineCommand(_dbContextFactory);
             _findAllMachineQuery = new GetAllMachineQuery(_dbContextFactory);
+            _getAllMachineStatusesQuery = new GetAllMachineStatusesQuery(_dbContextFactory);
             
             _modalNavigationStore = new ModalNavigationStore();
             _machineStore = new MachineStore(_createMachineCommand, _updateMachineCommand,
-                _deleteMachineCommand, _findAllMachineQuery);
+                _deleteMachineCommand, _findAllMachineQuery, _getAllMachineStatusesQuery);
         }
         protected override void OnStartup(StartupEventArgs e)
         {
