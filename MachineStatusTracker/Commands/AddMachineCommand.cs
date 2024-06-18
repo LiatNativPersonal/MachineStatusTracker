@@ -25,9 +25,9 @@ namespace MachineStatusTracker.Commands
         public override async Task ExecuteAsync(object? parameter)
         {
             var formViewModel = _machineViewModel.MachineDetailsFormViewModel;
-            Machine machine = new Machine(formViewModel.MachineName,
+            Machine machine = new Machine(Guid.NewGuid(), formViewModel.MachineName,
                 formViewModel.MachineDescription,
-                new Status() { Id = formViewModel.MachineStatus.StatusId, Name = formViewModel.MachineStatus.StatusName });
+                new Status(formViewModel.MachineStatus.Id, formViewModel.MachineStatus.Name));
             try
             {
                 await _machineStore.Add(machine);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MachineStatusTracker.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace MachineStatusTracker.ViewModels
 {
     public class MachineDetailsFormViewModel:ViewModelBase
     {
-        private readonly ObservableCollection<MachineStatus> _opStatuses;
-        public IEnumerable<MachineStatus> OpStatuses => _opStatuses;
+        private readonly ObservableCollection<Status> _opStatuses;
+        public IEnumerable<Status> OpStatuses => _opStatuses;
 
 
         private string _machineName;
@@ -29,8 +30,8 @@ namespace MachineStatusTracker.ViewModels
             } 
         }
 
-        private MachineStatus _machineStatus;
-        public MachineStatus MachineStatus
+        private Status _machineStatus;
+        public Status MachineStatus
         {
             
         get
@@ -71,11 +72,11 @@ namespace MachineStatusTracker.ViewModels
             CancelCommand = cancelCommand;
 
 
-            _opStatuses = new ObservableCollection<MachineStatus>();
-            _opStatuses.Add(new MachineStatus("Idle", Guid.NewGuid()));
-            _opStatuses.Add(new MachineStatus("Offline", Guid.NewGuid()));
-            _opStatuses.Add(new MachineStatus("Online", Guid.NewGuid()));
-            _opStatuses.Add(new MachineStatus("Maintenance", Guid.NewGuid()));
+            _opStatuses = new ObservableCollection<Status>();
+            _opStatuses.Add(new Status(Guid.NewGuid(), "Idle"));
+            _opStatuses.Add(new Status(Guid.NewGuid(), "Offline"));
+            _opStatuses.Add(new Status(Guid.NewGuid(), "Online"));
+            _opStatuses.Add(new Status(Guid.NewGuid(), "Maintenance"));
         }
 
 

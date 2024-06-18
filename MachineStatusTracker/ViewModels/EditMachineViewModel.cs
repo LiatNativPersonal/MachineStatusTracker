@@ -12,19 +12,23 @@ namespace MachineStatusTracker.ViewModels
 {
     public class EditMachineViewModel:ViewModelBase
     {
+
+        public Guid MachineId { get; }
         public MachineDetailsFormViewModel MachineDetailsFormViewModel { get; }
      
 
-        public EditMachineViewModel(Machine machine, ModalNavigationStore modalNavigationStore)
+        public EditMachineViewModel(Machine machine, ModalNavigationStore modalNavigationStore, MachineStore machineStore)
         {
-            ICommand submitCommand = new EditMachineCommand(modalNavigationStore);
+            MachineId = machine.Id;
+            
+            ICommand submitCommand = new EditMachineCommand(this, modalNavigationStore, machineStore);
             ICommand cancelCommand = new CLoseModelCommand(modalNavigationStore);
 
             MachineDetailsFormViewModel = new MachineDetailsFormViewModel(submitCommand, cancelCommand)
             {
                 MachineName = machine.Name,
                 MachineDescription = machine.Description,
-                MachineStatus = new MachineStatus(machine.Status.Name, machine.Status.Id)
+                MachineStatus = new Status(machine.Status.Id, machine.Status.Name)
             };
         }
     }

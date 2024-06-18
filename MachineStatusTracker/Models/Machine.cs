@@ -8,13 +8,13 @@ namespace MachineStatusTracker.Models
 {
     public class Machine
     {
-        private readonly Guid Id;
+        public Guid Id { get; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Status Status { get; }
-        public Machine(string name, string description, Status status)
+        public Machine(Guid id, string name, string description, Status status)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Name = name;
             Status = status;
             Description = description;

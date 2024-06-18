@@ -12,17 +12,20 @@ namespace MachineStatusTracker.Commands
     public class OpenEditMachineStatusCommand : CommandBase
     {
         private readonly ModalNavigationStore _modalNavigationStore;
-        private readonly Machine _machine;
+        private MachineStatusViewModel _machineStatusViewModel;
+        private MachineStore _machineStore;
 
-        public OpenEditMachineStatusCommand(ModalNavigationStore modalNavigationStore, Machine machine)
+        public OpenEditMachineStatusCommand(MachineStatusViewModel machineStatusViewModel, ModalNavigationStore modalNavigationStore, MachineStore machineStore)
         {
+            _machineStatusViewModel = machineStatusViewModel;
             _modalNavigationStore = modalNavigationStore;
-            _machine = machine;
+            _machineStore = machineStore;
         }
 
         public override void Execute(object? parameter)
         {
-            EditMachineViewModel editMachineViewModel = new EditMachineViewModel(_machine, _modalNavigationStore );
+            Machine machine = _machineStatusViewModel.Machine;
+            EditMachineViewModel editMachineViewModel = new EditMachineViewModel(machine, _modalNavigationStore, _machineStore);
             _modalNavigationStore.CurrentViewModel = editMachineViewModel;
         }
     }

@@ -11,10 +11,15 @@ namespace MachineStatusTracker.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        public Status(string name = "")
+        public Status(Guid id, string name)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Name = name;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

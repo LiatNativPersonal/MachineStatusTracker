@@ -25,15 +25,17 @@ namespace MachineStatusTracker.ViewModels
             _machineStatusViewModels = new ObservableCollection<MachineStatusViewModel>();
 
             _machineStore.MachineAdded += MachineStore_MachineAdded;
+            _machineStore.MachineUpdated += MachineStore_MachineUpdated;
 
-            AddMachine(new Machine("Machine1", "bla lba", new Status("Idle")));
-            AddMachine(new Machine("Machine2", "some info", new Status("Offline")));
-            AddMachine(new Machine("Machine3", "bla lba", new Status("Online")));
+            //AddMachine(new Machine(Guid.NewGuid(), "Machine1", "bla lba", new Status("Idle")));
+            //AddMachine(new Machine(Guid.NewGuid(), "Machine2", "some info", new Status("Offline")));
+            //AddMachine(new Machine(Guid.NewGuid(), "Machine3", "bla lba", new Status("Online")));
             
         }
         protected override void Dispose() 
         {
             _machineStore.MachineAdded -= MachineStore_MachineAdded;
+            _machineStore.MachineUpdated -= MachineStore_MachineUpdated;
             base.Dispose();
         }
 
@@ -42,10 +44,21 @@ namespace MachineStatusTracker.ViewModels
         {
             AddMachine(machine);
         }
+
+        private void MachineStore_MachineUpdated(Machine machine)
+        {
+            var machineViewModel = _machineStatusViewModels.FirstOrDefault(y => y.Machine.Id == machine.Id);
+            if (machineViewModel != null)
+            {
+                machineViewModel.Update(machine);
+            }
+
+            
+        }
         private void AddMachine(Machine machine)
         {
-            ICommand editCommand = new OpenEditMachineStatusCommand(_modalNavigationStore, machine);
-            _machineStatusViewModels.Add(new MachineStatusViewModel(machine, editCommand));
+            
+            _machineStatusViewModels.Add(new MachineStatusViewModel(machine, _modalNavigationStore, _machineStore));
         }
     }
 }
