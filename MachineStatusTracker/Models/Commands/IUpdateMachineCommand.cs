@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MachineStatusTracker.Models.Commands
 {
-    interface ICreateMachineCommand
+    public interface IUpdateMachineCommand
     {
+        Task Execute(Machine machine);
     }
 }

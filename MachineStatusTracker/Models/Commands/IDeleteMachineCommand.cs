@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MachineStatusTracker.Models.Commands
 {
-    interface IDeleteMachineCommand
+    public interface IDeleteMachineCommand
     {
+
+        Task Execute(Guid id);
     }
 }

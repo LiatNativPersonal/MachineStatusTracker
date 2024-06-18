@@ -9,8 +9,8 @@ namespace MachineStatusTracker.Models
     public class Machine
     {
         public Guid Id { get; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Name { get;  }
+        public string Description { get;  }
         public Status Status { get; }
         public Machine(Guid id, string name, string description, Status status)
         {
