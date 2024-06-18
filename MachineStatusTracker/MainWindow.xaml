@@ -9,7 +9,7 @@
    
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid Margin="25">
-            <!--<Views:AddMachineView DataContext="MachineDetailsFormViewModel"/>-->
+            <!--<Views:AddMachineView />-->
             <!--<Views:EditMachineView/>-->
             <Views:MachineStatusesView/>
     </Grid>

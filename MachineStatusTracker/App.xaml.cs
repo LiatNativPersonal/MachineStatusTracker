@@ -16,6 +16,7 @@ namespace MachineStatusTracker
             MainWindow = new MainWindow()
             {
                 DataContext = new MachineStatusesViewModel()
+
             };
             MainWindow.Show();
 
