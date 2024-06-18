@@ -71,6 +71,6 @@ namespace MachineStatusTracker.ViewModels
         public ICommand SubmitCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
-        public bool CanSubmit => !string.IsNullOrEmpty(MachineStatus.ToString()) && !string.IsNullOrEmpty(MachineName);
+        public bool CanSubmit =>  !string.IsNullOrEmpty(MachineName);
     }
 }

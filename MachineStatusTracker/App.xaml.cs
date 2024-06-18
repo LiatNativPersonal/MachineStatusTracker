@@ -23,7 +23,7 @@ namespace MachineStatusTracker
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_modalNavigationStore, new MachineStatusesViewModel())
+                DataContext = new MainViewModel(_modalNavigationStore, new MachineStatusesViewModel(_modalNavigationStore))
 
             };
             MainWindow.Show();

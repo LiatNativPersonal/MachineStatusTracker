@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MachineStatusTracker.Commands;
+using MachineStatusTracker.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +16,10 @@ namespace MachineStatusTracker.ViewModels
 
         public ICommand? AddMachineCommand { get; }
 
-        public MachineStatusesViewModel()
+        public MachineStatusesViewModel(ModalNavigationStore modalNavigationStore)
         {
             MachineStautsContainerViewModel = new MachineStautsContainerViewModel();
-           
+            AddMachineCommand = new OpenAddMachineStatusCommand(modalNavigationStore);
 
         }
     }

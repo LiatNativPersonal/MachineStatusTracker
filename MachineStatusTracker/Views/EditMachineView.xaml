@@ -16,6 +16,6 @@
     Text="Edit Machine Status"
     Style="{StaticResource PageHeader}"/>
 
-        <components:MachineDetailsForm Grid.Row="1" Margin="0 20 0 0"/>
+        <components:MachineDetailsForm Grid.Row="1" Margin="0 20 0 0" DataContext="{Binding MachineDetailsFormViewModel}"/>
     </Grid>
 </UserControl>
