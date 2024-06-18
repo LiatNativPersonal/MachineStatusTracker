@@ -62,7 +62,7 @@
                 Margin="0 0 10 0" 
                 Style="{StaticResource AddButton}"
                 IsEnabled="{Binding CanSubmit}"/>
-            <Button Content="Cancel" Style="{StaticResource ButtonSecondary}"/>
+            <Button Content="Cancel" Command="{Binding CancelCommand}" Style="{StaticResource ButtonSecondary}"/>
         </WrapPanel>
 
     </Grid>

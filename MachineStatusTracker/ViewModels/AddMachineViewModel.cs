@@ -1,8 +1,11 @@
-﻿using System;
+﻿using MachineStatusTracker.Commands;
+using MachineStatusTracker.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MachineStatusTracker.ViewModels
 {
@@ -10,9 +13,10 @@ namespace MachineStatusTracker.ViewModels
     {
         public MachineDetailsFormViewModel MachineDetailsFormViewModel { get;  }
 
-        public AddMachineViewModel()
+        public AddMachineViewModel(ModalNavigationStore modalNavigationStore)
         {
-            MachineDetailsFormViewModel = new MachineDetailsFormViewModel();
+            ICommand cancelCommand = new CLoseModelCommand(modalNavigationStore);
+            MachineDetailsFormViewModel = new MachineDetailsFormViewModel(null, cancelCommand);
         }
     }
 }

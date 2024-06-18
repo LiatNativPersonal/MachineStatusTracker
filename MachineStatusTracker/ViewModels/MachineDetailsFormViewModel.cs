@@ -14,14 +14,9 @@ namespace MachineStatusTracker.ViewModels
         private readonly ObservableCollection<MachineStatus> _opStatuses;
         public IEnumerable<MachineStatus> OpStatuses => _opStatuses;
 
-        public MachineDetailsFormViewModel()
-        {
-            _opStatuses = new ObservableCollection<MachineStatus>();
-            _opStatuses.Add(new MachineStatus("Idle"));
-            _opStatuses.Add(new MachineStatus("Offline"));
-            _opStatuses.Add(new MachineStatus("Online"));
-            _opStatuses.Add(new MachineStatus("Maintenance"));
-        }
+     
+
+       
 
         private string _machineName;
         public string MachineName {
@@ -72,5 +67,20 @@ namespace MachineStatusTracker.ViewModels
         public ICommand CancelCommand { get; set; }
 
         public bool CanSubmit =>  !string.IsNullOrEmpty(MachineName);
+
+        public MachineDetailsFormViewModel(ICommand submitCommand, ICommand cancelCommand)
+        {
+            SubmitCommand = submitCommand;
+            CancelCommand = cancelCommand;
+
+
+            _opStatuses = new ObservableCollection<MachineStatus>();
+            _opStatuses.Add(new MachineStatus("Idle"));
+            _opStatuses.Add(new MachineStatus("Offline"));
+            _opStatuses.Add(new MachineStatus("Online"));
+            _opStatuses.Add(new MachineStatus("Maintenance"));
+        }
+
+
     }
 }
