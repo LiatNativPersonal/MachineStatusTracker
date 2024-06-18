@@ -8,7 +8,7 @@ namespace MachineStatusTracker.Models
 {
     public class Status
     {
-        private readonly Guid Id;
+        public Guid Id;
         public string Name { get; }
 
         public Status(string name = "")

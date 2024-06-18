@@ -12,11 +12,11 @@ namespace MachineStatusTracker.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public Status Status { get; }
-        public Machine(string name, string description)
+        public Machine(string name, string description, Status status)
         {
             Id = Guid.NewGuid();
             Name = name;
-            Status = new Status();
+            Status = status;
             Description = description;
         }
 

@@ -18,7 +18,7 @@ namespace MachineStatusTracker.ViewModels
 
         public MachineStatusesViewModel(ModalNavigationStore modalNavigationStore)
         {
-            MachineStautsContainerViewModel = new MachineStautsContainerViewModel();
+            MachineStautsContainerViewModel = new MachineStautsContainerViewModel(modalNavigationStore);
             AddMachineCommand = new OpenAddMachineStatusCommand(modalNavigationStore);
 
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MachineStatusTracker.Commands;
+using MachineStatusTracker.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +20,12 @@ namespace MachineStatusTracker.ViewModels
         
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
-        public MachineStatusViewModel(string machineName, string machineDescription, string machineStatus)
+        public MachineStatusViewModel(Machine machine, ICommand editCommand)
         {
-            MachineName = machineName;
-            MachineDescription = machineDescription;
-            MachineStatus = new MachineStatus(machineName);
+            MachineName = machine.Name;
+            MachineDescription = machine.Description;
+            MachineStatus = new MachineStatus(machine.Status.Name, machine.Status.Id);
+            EditCommand = editCommand;
             
         }
 
@@ -31,12 +34,12 @@ namespace MachineStatusTracker.ViewModels
 
     public class MachineStatus
     {
-        public Guid MachineId { get; }
+        public Guid MachineId { get; set; }
         public string MachineName { get; set; }
-        public MachineStatus(string Name)
+        public MachineStatus(string Name, Guid machineID)
         {
             MachineName = Name;
-            MachineId = Guid.NewGuid();
+            MachineId = machineID;
             
         }
 

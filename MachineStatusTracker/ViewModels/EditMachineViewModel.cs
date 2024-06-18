@@ -1,4 +1,5 @@
 ﻿using MachineStatusTracker.Commands;
+using MachineStatusTracker.Models;
 using MachineStatusTracker.Stores;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,15 @@ namespace MachineStatusTracker.ViewModels
         public MachineDetailsFormViewModel MachineDetailsFormViewModel { get; }
      
 
-        public EditMachineViewModel(ModalNavigationStore modalNavigationStore)
+        public EditMachineViewModel(Machine machine, ModalNavigationStore modalNavigationStore)
         {
             ICommand cancelCommand = new CLoseModelCommand(modalNavigationStore);
-            MachineDetailsFormViewModel = new MachineDetailsFormViewModel(null, cancelCommand);
+            MachineDetailsFormViewModel = new MachineDetailsFormViewModel(null, cancelCommand)
+            {
+                MachineName = machine.Name,
+                MachineDescription = machine.Description,
+                MachineStatus = new MachineStatus(machine.Status.Name, machine.Status.Id)
+            };
         }
     }
 }

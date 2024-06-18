@@ -75,10 +75,10 @@ namespace MachineStatusTracker.ViewModels
 
 
             _opStatuses = new ObservableCollection<MachineStatus>();
-            _opStatuses.Add(new MachineStatus("Idle"));
-            _opStatuses.Add(new MachineStatus("Offline"));
-            _opStatuses.Add(new MachineStatus("Online"));
-            _opStatuses.Add(new MachineStatus("Maintenance"));
+            _opStatuses.Add(new MachineStatus("Idle", Guid.NewGuid()));
+            _opStatuses.Add(new MachineStatus("Offline", Guid.NewGuid()));
+            _opStatuses.Add(new MachineStatus("Online", Guid.NewGuid()));
+            _opStatuses.Add(new MachineStatus("Maintenance", Guid.NewGuid()));
         }
 
 
