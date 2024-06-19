@@ -17,7 +17,7 @@ namespace MachineStatusTracker.ViewModels
         {
             ICommand cancelCommand = new CLoseModelCommand(modalNavigationStore);
             ICommand submitCommand = new AddMachineCommand(this, machineStore, modalNavigationStore);
-            MachineDetailsFormViewModel = new MachineDetailsFormViewModel(submitCommand, cancelCommand);
+            MachineDetailsFormViewModel = new MachineDetailsFormViewModel(submitCommand, cancelCommand, machineStore);
         }
     }
 }
