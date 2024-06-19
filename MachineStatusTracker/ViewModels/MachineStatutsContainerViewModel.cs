@@ -30,9 +30,10 @@ namespace MachineStatusTracker.ViewModels
             _machineStore.MachinesLoaded += MachineStore_MachineLoaded;
             _machineStore.MachineAdded += MachineStore_MachineAdded;
             _machineStore.MachineUpdated += MachineStore_MachineUpdated;
+            _machineStore.MachineDeleted += MachineStore_MachineDeleted;
 
-           
-            
+
+
         }
 
         private void MachineStore_MachineLoaded()
@@ -45,6 +46,19 @@ namespace MachineStatusTracker.ViewModels
 
         }
 
+        private void MachineStore_MachineDeleted(Guid id)
+        {
+            MachineStatusViewModel machineStatusViewModel =
+                _machineStatusViewModels.FirstOrDefault(y => y.Machine?.Id == id);
+            if (machineStatusViewModel != null)
+            {
+                _machineStatusViewModels.Remove(machineStatusViewModel);
+            }
+
+
+
+        }
+
         public static MachineStautsContainerViewModel LoadViewModel (MachineStore machineStore, 
             ModalNavigationStore modalNavigationStore)
         {
@@ -54,12 +68,7 @@ namespace MachineStatusTracker.ViewModels
             return viewModel;
 
         }
-        protected override void Dispose() 
-        {
-            _machineStore.MachineAdded -= MachineStore_MachineAdded;
-            _machineStore.MachineUpdated -= MachineStore_MachineUpdated;
-            base.Dispose();
-        }
+        
 
 
         private void MachineStore_MachineAdded(Machine machine)
@@ -83,6 +92,15 @@ namespace MachineStatusTracker.ViewModels
             _machineStatusViewModels.Add(new MachineStatusViewModel(machine, _modalNavigationStore, _machineStore));
         }
 
-        
+
+        protected override void Dispose()
+        {
+            _machineStore.MachineAdded -= MachineStore_MachineAdded;
+            _machineStore.MachineUpdated -= MachineStore_MachineUpdated;
+            _machineStore.MachineUpdated -= MachineStore_MachineUpdated;
+            _machineStore.MachineDeleted -= MachineStore_MachineDeleted;
+            base.Dispose();
+        }
+
     }
 }

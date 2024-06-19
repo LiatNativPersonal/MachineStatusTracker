@@ -28,6 +28,7 @@ namespace MachineStatusTracker.Stores
         public event Action StatusesLoaded;
         public event Action<Machine> MachineAdded;
         public event Action<Machine> MachineUpdated;
+        public event Action<Guid> MachineDeleted;
 
         public MachineStore(ICreateMachineCommand createMachineCommand, 
             IUpdateMachineCommand updateMachineCommand, 
@@ -50,6 +51,15 @@ namespace MachineStatusTracker.Stores
             await _createMachineCommand.Execute(machine);
             _machines.Add(machine);
             MachineAdded?.Invoke(machine);
+        }
+
+        public async Task Delete(Guid id)
+        {
+            await _deleteMachineCommand.Execute(id);
+
+            _machines.RemoveAll(y => y.Id == id);
+            
+            MachineDeleted?.Invoke(id);
         }
 
         public async Task Update(Machine machine)

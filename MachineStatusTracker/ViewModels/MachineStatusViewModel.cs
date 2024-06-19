@@ -33,6 +33,7 @@ namespace MachineStatusTracker.ViewModels
             _machineStore = machineStore;
 
             EditCommand = new OpenEditMachineStatusCommand(this, modalNavigationStore, machineStore);
+            DeleteCommand = new DeleteMachineCommand(this, machineStore);
         }
 
         public void Update(Machine machine)
