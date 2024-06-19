@@ -24,8 +24,17 @@ namespace MachineStatusTracker.EntityFramework.Queries
         {
             using (MachineStatusTrackerDBContext context = _dbContextFactory.Create())
             {
+                List<Machine> machines = new List<Machine>();
                 IEnumerable<MachineDto> machineDtos = await context.Machines.ToListAsync();
-                return machineDtos.Select(d => new Machine(d.Id, d.Name, d.Description, new Status(d.Status.Id, d.Status.Name)));
+                IEnumerable<StatusDto> statusDtos = await context.Statuses.ToListAsync();
+                foreach (MachineDto  machineDto in machineDtos)
+                {
+                    StatusDto statusDto = statusDtos.First(y => y.Id == machineDto.Status.Id);
+                    Machine machine = new Machine(machineDto.Id, machineDto.Name, machineDto.Description,
+                        new Status(statusDto.Id, statusDto.Name));
+                    machines.Add(machine);
+                }
+                return machines;
             }
 
         }

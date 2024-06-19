@@ -18,19 +18,41 @@ namespace MachineStatusTracker.ViewModels
         private readonly ObservableCollection<MachineStatusViewModel> _machineStatusViewModels;
         public IEnumerable<MachineStatusViewModel> MachineStatusViewModels => _machineStatusViewModels;
 
+        public ICommand LoadMachinesCommand { get; }
         public MachineStautsContainerViewModel(MachineStore machineStore, ModalNavigationStore modalNavigationStore)
         {
             _machineStore = machineStore;
             _modalNavigationStore = modalNavigationStore;
             _machineStatusViewModels = new ObservableCollection<MachineStatusViewModel>();
+            
+            LoadMachinesCommand = new LoadMachinesCommand(machineStore);
 
+            _machineStore.MachinesLoaded += MachineStore_MachineLoaded;
             _machineStore.MachineAdded += MachineStore_MachineAdded;
             _machineStore.MachineUpdated += MachineStore_MachineUpdated;
 
-            //AddMachine(new Machine(Guid.NewGuid(), "Machine1", "bla lba", new Status("Idle")));
-            //AddMachine(new Machine(Guid.NewGuid(), "Machine2", "some info", new Status("Offline")));
-            //AddMachine(new Machine(Guid.NewGuid(), "Machine3", "bla lba", new Status("Online")));
+           
             
+        }
+
+        private void MachineStore_MachineLoaded()
+        {
+            _machineStatusViewModels.Clear();
+            foreach (Machine machine in _machineStore.Machines)
+            {
+                AddMachine(machine);
+            }
+
+        }
+
+        public static MachineStautsContainerViewModel LoadViewModel (MachineStore machineStore, 
+            ModalNavigationStore modalNavigationStore)
+        {
+            MachineStautsContainerViewModel viewModel = 
+                new MachineStautsContainerViewModel (machineStore, modalNavigationStore);
+            viewModel.LoadMachinesCommand.Execute(null);
+            return viewModel;
+
         }
         protected override void Dispose() 
         {
@@ -60,5 +82,7 @@ namespace MachineStatusTracker.ViewModels
             
             _machineStatusViewModels.Add(new MachineStatusViewModel(machine, _modalNavigationStore, _machineStore));
         }
+
+        
     }
 }
