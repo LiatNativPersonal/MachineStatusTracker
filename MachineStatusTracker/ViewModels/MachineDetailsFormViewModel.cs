@@ -82,13 +82,8 @@ namespace MachineStatusTracker.ViewModels
             LoadMachineStatusesCommand = new LoadMachineStatusesCommand(machineStore);
             _opStatuses = new ObservableCollection<Status>();
             _machineStore.StatusesLoaded += MachineStore_MachineStatusesLoaded;
-            LoadMachineStatusesCommand.Execute(this);
-            
+            LoadMachineStatusesCommand.Execute(this);            
 
-            _opStatuses.Add(new Status(Guid.NewGuid(), "Idle"));
-            //_opStatuses.Add(new Status(Guid.NewGuid(), "Offline"));
-            //_opStatuses.Add(new Status(Guid.NewGuid(), "Online"));
-            //_opStatuses.Add(new Status(Guid.NewGuid(), "Maintenance"));
         }
 
         private void MachineStore_MachineStatusesLoaded()
