@@ -29,7 +29,7 @@ namespace MachineStatusTracker.EntityFramework.Commands
                     Id = machine.Id,
                     Name = machine.Name,
                     Description = machine.Description,
-                    Status = new StatusDto() { Id = machine.Status.Id, Name = machine.Status.Name }
+                    Status = context.Statuses.FirstOrDefault(y=>y.Id==machine.Status.Id)
                 };
                 context.Machines.Add(machineDto);
                 await context.SaveChangesAsync();
