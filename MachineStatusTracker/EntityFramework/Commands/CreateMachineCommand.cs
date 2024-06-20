@@ -21,7 +21,7 @@ namespace MachineStatusTracker.EntityFramework.Commands
         }
 
         public async Task Execute(Machine machine)
-        {
+        {            
             using (MachineStatusTrackerDBContext context = _dbContextFactory.Create())
             {
                 MachineDto machineDto = new MachineDto()

@@ -25,6 +25,8 @@ namespace MachineStatusTracker.Commands
         public override async Task ExecuteAsync(object? parameter)
         {
             var formViewModel = _machineViewModel.MachineDetailsFormViewModel;
+            formViewModel.ErrorMessage = null;
+
             Machine machine = new Machine(Guid.NewGuid(), formViewModel.MachineName,
                 formViewModel.MachineDescription,
                 new Status(formViewModel.MachineStatus.Id, formViewModel.MachineStatus.Name));
@@ -33,8 +35,9 @@ namespace MachineStatusTracker.Commands
                 await _machineStore.Add(machine);
                 _modalNavigationStore.Close();
             }
-            catch (Exception )
+            catch (Exception)
             {
+                formViewModel.ErrorMessage = "Failed to add machine, please contact support";
             }
             
         }

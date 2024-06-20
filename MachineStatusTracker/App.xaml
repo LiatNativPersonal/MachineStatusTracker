@@ -7,6 +7,10 @@
     <Application.Resources>
         <ResourceDictionary>
 
+            <Style x:Key="ErrorMessage" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="Red"/>
+            </Style>
+
 
             <Style  TargetType="Button">
                 <Setter Property="Padding" Value="5 5"/>

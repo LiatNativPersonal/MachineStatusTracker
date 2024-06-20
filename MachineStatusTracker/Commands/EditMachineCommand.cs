@@ -30,7 +30,7 @@ namespace MachineStatusTracker.Commands
                 formViewModel.MachineName,
                 formViewModel.MachineDescription,
                 new Status(formViewModel.MachineStatus.Id, formViewModel.MachineStatus.Name));
-
+            formViewModel.ErrorMessage = null;  
             try
             {
                 await _machineStore.Update(machine);
@@ -38,9 +38,9 @@ namespace MachineStatusTracker.Commands
             }
             catch (Exception)
             {
+                formViewModel.ErrorMessage = "Failed to update machine, please contact support";
             }
-            _machineStore.Update(machine);
-            _modalNavigationStore.Close();
+            
         }
     }
 }

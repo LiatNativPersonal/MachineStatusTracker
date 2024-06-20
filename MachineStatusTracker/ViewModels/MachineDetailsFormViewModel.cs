@@ -18,7 +18,23 @@ namespace MachineStatusTracker.ViewModels
         private readonly MachineStore _machineStore;
 
         public IEnumerable<Status> OpStatuses => _opStatuses;
-        
+
+        public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get
+            {
+                return _errorMessage;
+            }
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+                OnPropertyChanged(nameof(HasErrorMessage));
+            }
+        }
+
 
 
         private string _machineName;
@@ -71,7 +87,7 @@ namespace MachineStatusTracker.ViewModels
 
         public ICommand LoadMachineStatusesCommand { get; }
 
-        public bool CanSubmit =>  !string.IsNullOrEmpty(MachineName);
+        public bool CanSubmit =>  !string.IsNullOrEmpty(MachineName) && MachineStatus != null;
 
         public MachineDetailsFormViewModel(ICommand submitCommand, ICommand cancelCommand, MachineStore machineStore)
         {

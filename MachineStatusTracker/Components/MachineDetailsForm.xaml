@@ -6,8 +6,12 @@
              xmlns:local="clr-namespace:MachineStatusTracker.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVisiabilityConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -64,6 +68,13 @@
                 IsEnabled="{Binding CanSubmit}"/>
             <Button Content="Cancel" Command="{Binding CancelCommand}" Style="{StaticResource ButtonSecondary}"/>
         </WrapPanel>
+
+        <TextBlock Grid.Row="2" 
+                   Margin="0 15 0 0" 
+                   Style="{StaticResource ErrorMessage}"
+                   Text="{Binding ErrorMessage}"
+                   Visibility="{Binding HasErrorMessage, Converter={StaticResource BoolVisiabilityConverter}}"/>
+
 
     </Grid>
 </UserControl>

@@ -64,6 +64,7 @@ namespace MachineStatusTracker.Stores
 
         public async Task Update(Machine machine)
         {
+            
             await _updateMachineCommand.Execute(machine);
             int currentIndex =_machines.FindIndex(y => y.Id == machine.Id);
             if (currentIndex == -1)
